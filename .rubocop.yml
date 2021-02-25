@@ -35,4 +35,8 @@ Style/Documentation:
 
 Style/StringLiterals:
   Enabled: false
+
+RSpec/ImplicitExpect:
+  Enabled: true
+  EnforcedStyle: should 
   
