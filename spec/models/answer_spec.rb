@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Answer, type: model do
+RSpec.describe Answer, type: :model do
   describe 'associations' do
     it { should belongs_to(:question) }
   end
