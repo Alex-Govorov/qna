@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Question, type: :model do
   describe 'associations' do
-    it { should have_many(:answers).class_name('Answer') }
+    it { should have_many(:answers) }
   end
 
   describe 'validations' do

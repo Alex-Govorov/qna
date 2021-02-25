@@ -39,4 +39,6 @@ Style/StringLiterals:
 RSpec/ImplicitExpect:
   Enabled: true
   EnforcedStyle: should 
-  
+
+Rails/NotNullColumn:
+  Enabled: false
