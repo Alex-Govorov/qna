@@ -24,6 +24,9 @@ Metrics/CyclomaticComplexity:
 Metrics/AbcSize:
  Max: 45
 
+Metrics/BlockLength:
+  IgnoredMethods: ['describe', 'context'] 
+
 Style/AsciiComments:
   Enabled: false
 
