@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+  questions:
+    index:
+      title: "Question"
+      ask_question: "Ask question"
+    question:
+      view: "View"

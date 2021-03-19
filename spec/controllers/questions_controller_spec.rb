@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
+  describe 'GET #index' do
+    it 'populates an array of all questions' do
+      question1 = create(:question)
+      question2 = create(:question)
+
+      get :index
+
+      expect(assigns(:questions)).to match_array([question1, question2])
+    end
+  end
+
   describe 'GET #new' do
     before { get :new }
 

@@ -16,7 +16,9 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def index; end
+  def index
+    @questions = Question.all
+  end
 
   private
 
