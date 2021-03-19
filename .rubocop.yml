@@ -5,7 +5,9 @@ require:
 AllCops:
   TargetRubyVersion: 3.0.0
   NewCops: enable
-
+  Exclude:
+    - 'app/views/**/*'
+    
 Layout/LineLength:
   Max: 100
 
@@ -44,7 +46,14 @@ RSpec/ImplicitExpect:
   EnforcedStyle: should 
 
 RSpec/Capybara/FeatureMethods:
-  EnabledMethods: ['feature']
+  EnabledMethods: ['feature', 'given', 'given!', 'scenario']
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/feature/**/*'
+
+RSpec/ExampleLength:
+  Enabled: false
 
 Rails/NotNullColumn:
   Enabled: false
