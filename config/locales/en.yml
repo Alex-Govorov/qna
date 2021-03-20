@@ -30,8 +30,15 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  questions:
+  hello: "Hello world" 
+
+  answers:
+    create:
+      answer_created: "Your answer successfully created."
+    form:
+      post_your_answer: "Post your answer"
+      
+  questions:    
     index:
       title: "Question"
       ask_question: "Ask question"

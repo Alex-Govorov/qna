@@ -46,7 +46,7 @@ RSpec/ImplicitExpect:
   EnforcedStyle: should 
 
 RSpec/Capybara/FeatureMethods:
-  EnabledMethods: ['feature', 'given', 'given!', 'scenario']
+  EnabledMethods: ['feature', 'given', 'given!', 'scenario', 'background']
 
 RSpec/MultipleExpectations:
   Exclude:

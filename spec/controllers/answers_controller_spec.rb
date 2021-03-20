@@ -19,9 +19,6 @@ RSpec.describe AnswersController, type: :controller do
     context 'with valid attributes' do
       it 'save a new answer in the database' do
         expect do
-          # Код с post запросом повторяется дважды, но 1ый раз внутри блока
-          # Возожно ли отрефакторить, чтобы исключить дублирование кода?
-          # Если вынести его в before, то не понятно какой объект передавать expect вместо блока
           post :create, params: { question_id: question, answer: attributes_for(:answer) }
         end.to change(question.answers, :count).by(1)
       end
@@ -35,7 +32,6 @@ RSpec.describe AnswersController, type: :controller do
     context 'with invalid attributes' do
       it 'does not save the answer' do
         expect do
-          # В этом контексте аналогичная ситуация
           post :create,
                params: { question_id: question, answer: attributes_for(:answer, :invalid) }
         end.not_to change(Answer, :count)

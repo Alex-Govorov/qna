@@ -1,2 +1,3 @@
 h1= @question.title
-p= @question.body 
+p= @question.body
+= render partial: 'answers/form', locals: { question: @question, answer: Answer.new }
