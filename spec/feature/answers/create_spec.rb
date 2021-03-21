@@ -16,7 +16,7 @@ feature 'User being on the question page can write an answer to the question', "
     click_on 'Post your answer'
 
     expect(page).to have_content 'Your answer successfully created.'
-    # expect(page).to have_content 'Test answer'
+    expect(page).to have_content 'Test answer'
   end
 
   scenario 'User answer the question with errors' do

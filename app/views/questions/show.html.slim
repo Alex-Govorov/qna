@@ -1,3 +1,8 @@
 h1= @question.title
 p= @question.body
+table
+  thead
+    tr
+      th= t('.answers')
+  tbody = render @question.answers
 = render partial: 'answers/form', locals: { question: @question, answer: Answer.new }
