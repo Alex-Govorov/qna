@@ -6,10 +6,7 @@ feature 'User being on the question page can write an answer to the question', "
   I'd like to be able to write answer
 " do
   given(:question) { create(:question) }
-
-  background do
-    visit question_path(question)
-  end
+  background { visit question_path(question) }
 
   scenario 'User answer the question' do
     fill_in 'Body', with: 'Test answer'
