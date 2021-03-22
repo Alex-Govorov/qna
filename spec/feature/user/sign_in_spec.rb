@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User can sign in', "
   In order to ask questions
   As an unauthenticated user
-  I'd like to be ablo to sign in
+  I'd like to be able to sign in
 " do
   given(:user) { User.create!(email: 'user@test.com', password: '12345678') }
   background { visit new_user_session_path }
