@@ -1,2 +1,5 @@
 tr
   td= answer.body
+  td= answer&.user&.email
+  - if answer.id
+      td= link_to t('.delete'), question_answer_path(@question, answer), method: :delete
