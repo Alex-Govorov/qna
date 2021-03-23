@@ -42,5 +42,8 @@ en:
     index:
       title: "Question"
       ask_question: "Ask question"
+    destroy:
+      question_deleted: "Question successfully deleted."
+      only_own_question_can_be_deleted: "Only own question can be deleted."
     question:
-      view: "View"
+      view: "View"      

@@ -2,6 +2,7 @@ table
   thead
     tr
       th= t('.title')
+      th= t('.author')
   tbody = render @questions
 
 p= link_to t('.ask_question'), new_question_path

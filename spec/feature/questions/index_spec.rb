@@ -5,9 +5,11 @@ feature 'User can view the list of questions', "
   As an user
   I'd like to be able to view questions list
 " do
+  let(:user) { create(:user) }
+
   scenario 'User view questions list' do
-    Question.create!(title: 'Title1', body: 'Body1')
-    Question.create!(title: 'Title2', body: 'Body2')
+    Question.create!(title: 'Title1', body: 'Body1', user: user)
+    Question.create!(title: 'Title2', body: 'Body2', user: user)
 
     visit questions_path
     expect(page).to have_content 'Title1'
