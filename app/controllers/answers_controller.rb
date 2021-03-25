@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to question_path(@question), notice: t('.answer_created')
     else
-      render template: 'questions/show'
+      render 'questions/show'
     end
   end
 
@@ -31,6 +31,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body, :user_id)
+    params.require(:answer).permit(:body)
   end
 end

@@ -17,11 +17,11 @@ RSpec.describe User, type: :model do
     let(:question) { user.questions.new }
 
     it 'returns true if resource user is equal to self' do
-      expect(user.author_of?(question)).to eq true
+      expect(user).to be_author_of(question)
     end
 
     it 'returns false if resource user is not equal to self' do
-      expect(user2.author_of?(question)).to eq false
+      expect(user2).not_to be_author_of(question)
     end
   end
 end
