@@ -4,21 +4,9 @@ RSpec.describe AnswersController, type: :controller do
   let(:user) { create(:user) }
   let(:question) { create(:question) }
 
-  before { login(user) }
-
-  describe 'GET #new' do
-    before { get :new, params: { question_id: question } }
-
-    it 'assigns a new question.answers to @answer' do
-      expect(assigns(:answer)).to be_a_new(Answer).with(question_id: question.id)
-    end
-
-    it 'renders new view' do
-      expect(response).to render_template :new
-    end
-  end
-
   describe 'POST #create' do
+    before { login(user) }
+
     context 'with valid attributes' do
       it 'save a new answer in the database' do
         expect do
@@ -40,9 +28,39 @@ RSpec.describe AnswersController, type: :controller do
         end.not_to change(Answer, :count)
       end
 
-      it 're-renders new view' do
+      it 're-renders questions/show view' do
         post :create, params: { question_id: question, answer: attributes_for(:answer, :invalid) }
-        expect(response).to render_template :new
+        expect(response).to render_template 'questions/show'
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let!(:answer) { create(:answer) }
+
+    context 'when author' do
+      before { login(answer.user) }
+
+      it 'deletes the answer' do
+        expect { delete :destroy, params: { id: answer } }.to change(Answer, :count).by(-1)
+      end
+
+      it 'redirects to question' do
+        delete :destroy, params: { id: answer }
+        expect(response).to redirect_to question_path(answer.question)
+      end
+    end
+
+    context 'when not the author' do
+      before { login(user) }
+
+      it 'does not deletes the answer' do
+        expect { delete :destroy, params: { id: answer } }.to change(Answer, :count).by(0)
+      end
+
+      it 'redirects to question' do
+        delete :destroy, params: { id: answer }
+        expect(response).to redirect_to question_path(answer.question)
       end
     end
   end

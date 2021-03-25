@@ -1,10 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_question, only: %i[new create destroy]
-
-  def new
-    @answer = @question.answers.new
-  end
+  before_action :set_question, only: %i[create]
 
   def create
     @answer = @question.answers.new(answer_params)
@@ -13,18 +9,18 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to question_path(@question), notice: t('.answer_created')
     else
-      render :new
+      render template: 'questions/show'
     end
   end
 
   def destroy
     @answer = Answer.find(params[:id])
 
-    if @answer.user == current_user
+    if current_user.author_of?(@answer)
       @answer.destroy
-      redirect_to question_path(@question), notice: t('.answer_deleted')
+      redirect_to question_path(@answer.question), notice: t('.answer_deleted')
     else
-      redirect_to question_path(@question), notice: t('.only_own_answer_can_be_deleted')
+      redirect_to question_path(@answer.question), notice: t('.only_own_answer_can_be_deleted')
     end
   end
 

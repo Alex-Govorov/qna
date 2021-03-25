@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    if @question.user == current_user
+    if current_user.author_of?(@question)
       @question.destroy
       redirect_to questions_path, notice: t('.question_deleted')
     else
@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :body, :user_id)
+    params.require(:question).permit(:title, :body)
   end
 
   def set_question

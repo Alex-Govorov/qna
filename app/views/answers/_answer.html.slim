@@ -1,5 +1,6 @@
-tr
-  td= answer.body
-  td= answer&.user&.email
-  - if answer.id
-      td= link_to t('.delete'), question_answer_path(@question, answer), method: :delete
+- if answer.persisted?
+  tr
+    td= answer.body
+    td= answer&.user&.email
+    - if current_user&.author_of?(answer)
+      td= link_to t('.delete'), answer_path(answer), method: :delete
