@@ -15,15 +15,14 @@ feature 'User being on the question page can write an answer to the question', "
       visit question_path(question)
     end
 
-    scenario 'answer the question' do
+    scenario 'answer the question', js: true do
       fill_in 'Body', with: 'Test answer'
       click_on 'Post your answer'
 
-      expect(page).to have_content 'Your answer successfully created.'
       expect(page).to have_content 'Test answer'
     end
 
-    scenario 'answer the question with errors' do
+    scenario 'answer the question with errors', js: true do
       click_on 'Post your answer'
 
       expect(page).to have_content "Body can't be blank"

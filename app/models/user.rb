@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   def author_of?(resource)
     # resource.user == self
+    # Я так и не понял, как воспроизвести проблему n+1
+    # Подробный вопрос оставил тут: https://github.com/Alex-Govorov/qna/pull/3#discussion_r601611787
     resource.user_id == id
   end
 end

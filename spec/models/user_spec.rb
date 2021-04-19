@@ -12,9 +12,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '#author_of?(resource)' do
-    let(:user) { described_class.new(email: 'user1@mail.com', password: '123456') }
-    let(:user2) { described_class.new(email: 'user2@mail.com', password: '123456') }
-    let(:question) { user.questions.new }
+    let(:user) { described_class.create(email: 'user1@mail.com', password: '123456') }
+    let(:user2) { described_class.create(email: 'user2@mail.com', password: '123456') }
+    let(:question) { user.questions.create }
 
     it 'returns true if resource user is equal to self' do
       expect(user).to be_author_of(question)

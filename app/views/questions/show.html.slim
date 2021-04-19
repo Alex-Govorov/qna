@@ -5,5 +5,6 @@ table
     tr
       th= t('.answers')
       th= t('.author')
-  tbody = render @question.answers
+  tbody class="answers" = render @question.answers
+div class="answer-errors"
 = render partial: 'answers/form', locals: { question: @question, answer: Answer.new }

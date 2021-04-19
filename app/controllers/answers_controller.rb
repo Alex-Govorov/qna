@@ -6,11 +6,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
 
-    if @answer.save
-      redirect_to question_path(@question), notice: t('.answer_created')
-    else
-      render 'questions/show'
-    end
+    @answer.save
   end
 
   def destroy

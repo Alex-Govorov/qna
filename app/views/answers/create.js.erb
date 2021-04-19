@@ -1,0 +1,8 @@
+document.querySelector('.answer-errors').innerHTML = ("<%= render 'shared/errors', resource: @answer %>")
+
+<% if @answer.persisted? %>
+	var answer = document.createElement('tr')
+	answer.innerHTML = '<%= j render @answer %>'
+	document.querySelector('.answers').appendChild(answer)
+	document.getElementById('answer_body').value = ''
+<% end %>

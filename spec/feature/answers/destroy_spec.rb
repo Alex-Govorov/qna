@@ -16,7 +16,7 @@ feature "The author can delete his own answer, but cannot delete someone else's 
     click_on 'Post your answer'
   end
 
-  scenario 'Authenticated user deletes their own answer' do
+  scenario 'Authenticated user deletes their own answer', js: true do
     expect(page).to have_content 'Test answer'
     click_on 'Delete'
 
@@ -24,7 +24,7 @@ feature "The author can delete his own answer, but cannot delete someone else's 
     expect(page).to have_no_content 'Test answer'
   end
 
-  scenario "Authenticated user tried deletes someone else's answer" do
+  scenario "Authenticated user tried deletes someone else's answer", js: true do
     click_on 'Logout'
 
     sign_in(user2)
@@ -34,7 +34,7 @@ feature "The author can delete his own answer, but cannot delete someone else's 
     expect(page).to have_no_content 'Delete'
   end
 
-  scenario "Unauthenticated user tried deletes someone else's answer" do
+  scenario "Unauthenticated user tried deletes someone else's answer", js: true do
     click_on 'Logout'
     visit question_path(question)
 
