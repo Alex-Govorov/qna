@@ -1,0 +1,8 @@
+var id = '<%= @answer.id %>'
+var errors = document.querySelector(`#answer-${id}-errors`)
+errors.innerHTML = ("<%= render 'shared/errors', resource: @answer %>")
+
+<% if @answer.valid? %>
+	document.querySelector(`#answer-${id}-body`).innerText = '<%= @answer.body %>'
+	document.querySelector(`#answer-${id}`).removeChild(document.querySelector(`#answer-${id}-form`))
+<% end %>

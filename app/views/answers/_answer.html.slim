@@ -1,6 +1,7 @@
 - if answer.persisted?
-  tr
-    td= answer.body
+  tr id = "answer-#{answer.id}"
+    td id = "answer-#{answer.id}-body" = answer.body
     td= answer&.user&.email
     - if current_user&.author_of?(answer)
+      td= link_to t('.edit'), edit_answer_path(answer), remote: true
       td= link_to t('.delete'), answer_path(answer), method: :delete

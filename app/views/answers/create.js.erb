@@ -2,6 +2,7 @@ document.querySelector('.answer-errors').innerHTML = ("<%= render 'shared/errors
 
 <% if @answer.persisted? %>
 	var answer = document.createElement('tr')
+	answer.setAttribute('id', 'answer-<%= @answer.id %>')
 	answer.innerHTML = '<%= j render @answer %>'
 	document.querySelector('.answers').appendChild(answer)
 	document.getElementById('answer_body').value = ''

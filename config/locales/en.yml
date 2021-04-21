@@ -38,6 +38,8 @@ en:
     destroy:
       answer_deleted: "Answer successfully deleted."
       only_own_answer_can_be_deleted: "Only own answer can be deleted."
+    edit_form:
+      save: "Save"
     form:
       post_your_answer: "Post your answer"
       

@@ -1,0 +1,5 @@
+div id = "answer-#{answer.id}-errors"
+= form_with model: [answer], local:false, method: 'patch' do |f|
+   = f.label :body
+   = f.text_area :body
+   = f.submit t('.save')
