@@ -11,12 +11,9 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    if current_user.author_of?(@answer)
-      @answer.destroy
-      redirect_to question_path(@answer.question), notice: t('.answer_deleted')
-    else
-      redirect_to question_path(@answer.question), notice: t('.only_own_answer_can_be_deleted')
-    end
+    return unless current_user.author_of?(@answer)
+
+    @answer.destroy
   end
 
   def edit; end

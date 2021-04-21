@@ -33,6 +33,8 @@ en:
   hello: "Hello world" 
 
   answers:
+    answer:
+      delete: "Delete"
     create:
       answer_created: "Your answer successfully created."
     destroy:

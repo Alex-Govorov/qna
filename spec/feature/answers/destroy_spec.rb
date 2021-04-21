@@ -20,7 +20,6 @@ feature "The author can delete his own answer, but cannot delete someone else's 
     expect(page).to have_content 'Test answer'
     click_on 'Delete'
 
-    expect(page).to have_content 'Answer successfully deleted.'
     expect(page).to have_no_content 'Test answer'
   end
 

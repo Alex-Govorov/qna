@@ -4,4 +4,4 @@
     td= answer&.user&.email
     - if current_user&.author_of?(answer)
       td= link_to t('.edit'), edit_answer_path(answer), remote: true
-      td= link_to t('.delete'), answer_path(answer), method: :delete
+      td= link_to t('.delete'), answer_path(answer), method: :delete, remote: true
