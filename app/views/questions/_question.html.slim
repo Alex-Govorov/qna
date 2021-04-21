@@ -1,6 +1,7 @@
-tr
-  td= question.title
+tr  id = "question-#{question.id}"
+  td id = "question-#{question.id}-title" = question.title
   td= question.user.email
   td= link_to t('.view'), question_path(question)
   - if current_user&.author_of?(question)
+    td= link_to t('.edit'), edit_question_path(question), remote: true
     td= link_to t('.delete'), question_path(question), method: :delete

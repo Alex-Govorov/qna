@@ -103,4 +103,68 @@ RSpec.describe QuestionsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #edit' do
+    let!(:question) { create(:question, user: user) }
+
+    context 'when author click edit link' do
+      before { login(user) }
+
+      it 'renders edit view' do
+        get :edit, params: { id: question }, xhr: true
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    let!(:question) { create(:question, user: user) }
+
+    context 'when author with valid attributes' do
+      before { login(user) }
+
+      it 'changes question attributes' do
+        patch :update, params: { id: question, question: { body: 'new body', title: 'new title' } },
+                       format: :js
+        question.reload
+        expect(question).to have_attributes(body: 'new body', title: 'new title')
+      end
+
+      it 'renders update view' do
+        patch :update, params: { id: question, question: { body: 'new body', title: 'new title' } },
+                       format: :js
+        expect(response).to render_template :update
+      end
+    end
+
+    context 'when author with invalid attributes' do
+      before { login(user) }
+
+      it 'does not change attributes' do
+        expect do
+          patch :update,
+                params: { id: question, question: attributes_for(:question, :invalid) }, format: :js
+        end.not_to change(question, :title)
+      end
+
+      it 'renders update view' do
+        patch :update,
+              params: { id: question, question: attributes_for(:question, :invalid) }, format: :js
+        expect(response).to render_template :update
+      end
+    end
+
+    context 'when not author' do
+      let(:user2) { create(:user) }
+
+      before { login(user2) }
+
+      it 'does not change attributes' do
+        patch :update, params: { id: question, question: { body: 'new body', title: 'new title' } },
+                       format: :js
+        question.reload
+        expect(question).not_to have_attributes(body: 'new body', title: 'new title')
+      end
+    end
+  end
 end

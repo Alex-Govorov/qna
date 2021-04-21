@@ -50,5 +50,7 @@ en:
     destroy:
       question_deleted: "Question successfully deleted."
       only_own_question_can_be_deleted: "Only own question can be deleted."
+    edit_form:
+      save: "Save"
     question:
       view: "View"      

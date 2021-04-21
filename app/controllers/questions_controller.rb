@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_question, only: %i[show destroy]
+  before_action :set_question, only: %i[show destroy edit update]
 
   def new
     @question = current_user.questions.new
@@ -28,6 +28,14 @@ class QuestionsController < ApplicationController
     else
       redirect_to questions_path, notice: t('.only_own_question_can_be_deleted')
     end
+  end
+
+  def edit; end
+
+  def update
+    return unless current_user.author_of?(@question)
+
+    @question.update(question_params)
   end
 
   private
