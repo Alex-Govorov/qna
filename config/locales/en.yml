@@ -34,6 +34,7 @@ en:
 
   answers:
     answer:
+      best: "Best"
       delete: "Delete"
     create:
       answer_created: "Your answer successfully created."

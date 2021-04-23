@@ -6,7 +6,9 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new
   end
 
-  def show; end
+  def show
+    @answers = @question.answers.sort_by_best
+  end
 
   def create
     @question = current_user.questions.create(question_params)

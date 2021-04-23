@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   resources :questions do
     get :edit, on: :member
     resources :answers, shallow: true, only: %i[create destroy update] do
-      get :edit, on: :member
+      member do
+        get :edit
+        patch :mark_as_best
+      end
     end
   end
 end

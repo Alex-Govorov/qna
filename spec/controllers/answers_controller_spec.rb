@@ -133,4 +133,38 @@ RSpec.describe AnswersController, type: :controller do
       end
     end
   end
+
+  describe 'PATCH #mark_as_best' do
+    let!(:answer) { create(:answer) }
+
+    context 'when author of question' do
+      before { login(answer.question.user) }
+
+      it 'changes answer attribute best to true' do
+        patch :mark_as_best, params: { id: answer }, format: :js
+        answer.reload
+        expect(answer.best).to eq true
+      end
+
+      it 'renders mark_as_best view' do
+        patch :mark_as_best, params: { id: answer }, format: :js
+        expect(response).to render_template :mark_as_best
+      end
+    end
+
+    context 'when not author of question' do
+      before { login(user) }
+
+      it 'does not changes answer attribute best to true' do
+        patch :mark_as_best, params: { id: answer }, format: :js
+        answer.reload
+        expect(answer.best).not_to eq true
+      end
+
+      it 'renders mark_as_best view' do
+        patch :mark_as_best, params: { id: answer }, format: :js
+        expect(response).to render_template :mark_as_best
+      end
+    end
+  end
 end
