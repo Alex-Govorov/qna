@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
   def edit; end
 
   def update
-    return unless current_user.author_of?(@question)
+    return head :forbidden unless current_user.author_of?(@question)
 
     @question.update(question_params)
   end

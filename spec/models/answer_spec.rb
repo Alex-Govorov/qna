@@ -36,12 +36,8 @@ RSpec.describe Answer, type: :model do
 
     it "not set best attribute to true
      if unsusscessfully update all answers best attribute to false in transaction block" do
-       answer.update_attribute(:body, nil)
-       # Не придумал, как лучше тестировать не удачную транзакцию
-       answer.mark_as_best
-       answer.reload
-
-       expect(answer.best).to eq false
+       answer.update_attribute(:body, nil) # rubocop:disable Rails/SkipsModelValidations
+       expect { answer.mark_as_best }.to raise_error(ActiveRecord::RecordInvalid)
      end
   end
 end

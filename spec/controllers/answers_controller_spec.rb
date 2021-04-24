@@ -66,9 +66,9 @@ RSpec.describe AnswersController, type: :controller do
         end.not_to change(Answer, :count)
       end
 
-      it 'renders destroy view' do
+      it 'return forbidden status in header' do
         delete :destroy, params: { id: answer }, format: :js
-        expect(response).to render_template :destroy
+        expect(response.status).to eq 403
       end
     end
   end
@@ -161,9 +161,9 @@ RSpec.describe AnswersController, type: :controller do
         expect(answer.best).not_to eq true
       end
 
-      it 'renders mark_as_best view' do
+      it 'return forbidden status in header' do
         patch :mark_as_best, params: { id: answer }, format: :js
-        expect(response).to render_template :mark_as_best
+        expect(response.status).to eq 403
       end
     end
   end

@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    return unless current_user.author_of?(@answer)
+    return head :forbidden unless current_user.author_of?(@answer)
 
     @answer.destroy
   end
@@ -19,13 +19,13 @@ class AnswersController < ApplicationController
   def edit; end
 
   def update
-    return unless current_user.author_of?(@answer)
+    return head :forbidden unless current_user.author_of?(@answer)
 
     @answer.update(answer_params)
   end
 
   def mark_as_best
-    return unless current_user.author_of?(@answer.question)
+    return head :forbidden unless current_user.author_of?(@answer.question)
 
     @answer.mark_as_best
   end

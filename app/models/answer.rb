@@ -10,10 +10,9 @@ class Answer < ApplicationRecord
   def mark_as_best
     transaction do
       # rubocop:disable Rails/SkipsModelValidations
-      self.class.where(question_id: question_id).update_all(best: false)
+      question.answers.update_all(best: false)
       # rubocop:enable Rails/SkipsModelValidations
-      # self.class.where(question_id: question_id).find_each { |answer| answer.update(best: false) }
-      update(best: true)
+      update!(best: true)
     end
   end
 end
