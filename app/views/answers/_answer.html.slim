@@ -1,5 +1,6 @@
 - if answer.persisted?
   tr class=('best-answer' if answer.best) id="answer-#{answer.id}"
+    = render 'shared/files', resource: answer
     td id="answer-#{answer.id}-body" = answer.body
     td= answer&.user&.email
     - if current_user&.author_of?(answer)

@@ -22,6 +22,28 @@ feature 'User being on the question page can write an answer to the question', "
       expect(page).to have_content 'Test answer'
     end
 
+    scenario 'answer the question with attached file', js: true do
+      fill_in 'Body', with: 'Test answer'
+
+      attach_file 'File', Rails.root.join('spec/rails_helper.rb')
+      click_on 'Post your answer'
+
+      within('.answers') { expect(page).to have_link 'rails_helper.rb' }
+    end
+
+    scenario 'answer the question with attached files', js: true do
+      fill_in 'Body', with: 'Test answer'
+
+      attach_file 'File', [Rails.root.join('spec/rails_helper.rb'),
+                           Rails.root.join('spec/spec_helper.rb')]
+      click_on 'Post your answer'
+
+      within '.answers' do
+        expect(page).to have_link 'rails_helper.rb'
+        expect(page).to have_link 'spec_helper.rb'
+      end
+    end
+
     scenario 'answer the question with errors', js: true do
       click_on 'Post your answer'
 
