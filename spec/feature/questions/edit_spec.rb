@@ -37,6 +37,27 @@ I'd like to be able to edit my question
       expect(page).to have_content 'edited question body'
     end
 
+    scenario 'edits his question with attached files and adds new files', js: true do
+      click_on 'Edit'
+
+      within '.questions' do
+        fill_in 'Body', with: 'edited question body'
+        fill_in 'Title', with: 'edited question title'
+        attach_file 'File', [Rails.root.join('spec/rails_helper.rb'),
+                             Rails.root.join('spec/spec_helper.rb')]
+        click_on 'Save'
+        click_on 'Edit'
+
+        attach_file 'File', Rails.root.join('.rubocop.yml')
+        click_on 'Save'
+      end
+
+      click_on 'View'
+      expect(page).to have_link 'rails_helper.rb'
+      expect(page).to have_link 'spec_helper.rb'
+      expect(page).to have_link '.rubocop.yml'
+    end
+
     scenario 'edit his question with errors', js: true do
       click_on 'Edit'
 
