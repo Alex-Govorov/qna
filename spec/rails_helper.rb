@@ -66,6 +66,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
+  config.after(:all) { FileUtils.rm_rf(Rails.root.join('tmp/storage')) }
 end
 
 Shoulda::Matchers.configure do |config|
