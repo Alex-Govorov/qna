@@ -1,6 +1,5 @@
 - if answer.persisted?
   tr class=('best-answer' if answer.best) id="answer-#{answer.id}"
-    = render 'shared/files', resource: answer
     td id="answer-#{answer.id}-body" = answer.body
     td= answer&.user&.email
     - if current_user&.author_of?(answer)
@@ -8,3 +7,4 @@
       td= link_to t('.delete'), answer_path(answer), method: :delete, remote: true
     - if current_user&.author_of?(answer.question) && !answer.best
         td= link_to t('.best'), mark_as_best_answer_path(answer), method: :patch, remote: true
+    td= render 'shared/files', resource: answer

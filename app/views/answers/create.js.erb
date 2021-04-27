@@ -6,4 +6,5 @@ document.querySelector('.answer-errors').innerHTML = ("<%= render 'shared/errors
 	answer.innerHTML = '<%= j render @answer %>'
 	document.querySelector('.answers').appendChild(answer)
 	document.getElementById('answer_body').value = ''
+	document.getElementById('answer_files').value = ''
 <% end %>

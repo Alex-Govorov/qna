@@ -35,6 +35,24 @@ I'd like to be able to edit my answer
       end
     end
 
+    scenario 'edits his answer with attached files and adds new files', js: true do
+      click_on 'Edit'
+
+      within '.answers' do
+        fill_in 'Body', with: 'edited answer'
+        attach_file 'File', [Rails.root.join('spec/rails_helper.rb'),
+                             Rails.root.join('spec/spec_helper.rb')]
+        click_on 'Save'
+        click_on 'Edit'
+        attach_file 'File', Rails.root.join('.rubocop.yml')
+        click_on 'Save'
+
+        expect(page).to have_link 'rails_helper.rb'
+        expect(page).to have_link 'spec_helper.rb'
+        expect(page).to have_link '.rubocop.yml'
+      end
+    end
+
     scenario 'edit his answer with errors', js: true do
       click_on 'Edit'
 
