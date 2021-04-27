@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root 'questions#index'
 
   resources :questions do
-    get :edit, on: :member
+    member do
+      get :edit
+      delete :delete_attachment
+    end
+    # get :edit, on: :member
     resources :answers, shallow: true, only: %i[create destroy update] do
       member do
         get :edit

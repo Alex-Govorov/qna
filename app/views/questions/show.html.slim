@@ -1,6 +1,7 @@
 h1= @question.title
 p= @question.body
-= render 'shared/files', resource: @question
+div class="attachments"
+  = render 'shared/files', resource: @question
 table
   thead
     tr

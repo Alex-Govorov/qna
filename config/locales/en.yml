@@ -56,4 +56,8 @@ en:
     edit_form:
       save: "Save"
     question:
-      view: "View"      
+      view: "View"
+
+  shared:
+    files:
+      delete: "Delete"

@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_question, only: %i[show destroy edit update]
+  before_action :set_question, only: %i[show destroy edit update delete_attachment]
 
   def new
     @question = current_user.questions.new
@@ -38,6 +38,13 @@ class QuestionsController < ApplicationController
     return head :forbidden unless current_user.author_of?(@question)
 
     @question.update(question_params)
+  end
+
+  def delete_attachment
+    return head :forbidden unless current_user.author_of?(@question)
+
+    @question.files.find(params[:file]).purge
+    @question.files.reload
   end
 
   private
