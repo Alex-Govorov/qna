@@ -21,17 +21,17 @@ feature "The author can delete attachment in his own question", "
     end
   end
 
-  scenario 'Authenticated user deletes their own question', js: true do
+  scenario 'Authenticated user deletes any attachment in they own question', js: true do
     visit question_path(question)
 
-    within '.attachments' do
+    within '.question-attachments' do
       expect(page).to have_link 'rails_helper.rb'
       expect(page).to have_link 'spec_helper.rb'
     end
 
     find("#attachment-#{question.files.first.id}").click_on 'Delete'
 
-    within '.attachments' do
+    within '.question-attachments' do
       expect(page).not_to have_link 'rails_helper.rb'
       expect(page).to have_link 'spec_helper.rb'
     end
@@ -42,13 +42,13 @@ feature "The author can delete attachment in his own question", "
     sign_in(user2)
     visit question_path(question)
 
-    within('.attachments') { expect(page).not_to have_link 'Delete' }
+    within('.question-attachments') { expect(page).not_to have_link 'Delete' }
   end
 
   scenario "Unauthenticated user tried deletes attachment in someone else's question", js: true do
     click_on 'Logout'
     visit question_path(question)
 
-    within('.attachments') { expect(page).not_to have_link 'Delete' }
+    within('.question-attachments') { expect(page).not_to have_link 'Delete' }
   end
 end

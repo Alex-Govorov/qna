@@ -1,0 +1,5 @@
+var answer = document.querySelector('#answer-<%= @answer.id %>')
+var attachments = answer.querySelector('.answer-attachments')
+attachments.addEventListener("ajax:success", (event) => {
+	attachments.innerHTML = "<%= j render 'shared/files', resource: @answer %>"	
+ })

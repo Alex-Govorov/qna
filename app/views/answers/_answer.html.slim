@@ -7,4 +7,4 @@
       td= link_to t('.delete'), answer_path(answer), method: :delete, remote: true
     - if current_user&.author_of?(answer.question) && !answer.best
         td= link_to t('.best'), mark_as_best_answer_path(answer), method: :patch, remote: true
-    td= render 'shared/files', resource: answer
+    td class="answer-attachments" = render 'shared/files', resource: answer
