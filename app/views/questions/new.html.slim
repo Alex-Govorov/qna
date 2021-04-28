@@ -2,7 +2,7 @@
 
 = form_with model: @question, local:true do |f|
   = f.label :files
-  = f.file_field :files, multiple: true
+  = f.file_field :files, multiple: true, direct_upload: true
   = f.label :title
   = f.text_field :title
   = f.label :body

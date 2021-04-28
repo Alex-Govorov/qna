@@ -1,7 +1,7 @@
 = render 'shared/errors', resource: @answer
 = form_with model: [question, answer], local:false do |f|
   = f.label :files
-  = f.file_field :files, multiple: true
+  = f.file_field :files, multiple: true, direct_upload: true
   = f.label :body
   = f.text_area :body
   = f.submit t('.post_your_answer')
