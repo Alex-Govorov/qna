@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question, only: %i[create]
-  before_action :set_answer, only: %i[destroy edit update mark_as_best delete_attachment]
+  before_action :set_answer, only: %i[destroy edit update mark_as_best]
 
   def create
     @answer = @question.answers.new(answer_params)
@@ -28,13 +28,6 @@ class AnswersController < ApplicationController
     return head :forbidden unless current_user.author_of?(@answer.question)
 
     @answer.mark_as_best
-  end
-
-  def delete_attachment
-    return head :forbidden unless current_user.author_of?(@answer)
-
-    @answer.files.find(params[:file]).purge
-    @answer.files.reload
   end
 
   private

@@ -4,4 +4,4 @@
       = link_to file.filename.to_s, url_for(file)
       div class="delete-attachment"
         - if current_user&.author_of?(resource)
-          = link_to t('.delete'), delete_attachment_link(resource, file.id), method: :delete, remote: true
+          = link_to t('.delete'), attachment_path(file.id), method: :delete, remote: true
