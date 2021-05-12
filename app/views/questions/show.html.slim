@@ -2,11 +2,6 @@ h1= @question.title
 p= @question.body
 div class="question-attachments"
   = render 'shared/files', resource: @question
-table
-  thead
-    tr
-      th= t('.answers')
-      th= t('.author')
-  tbody class="answers" = render @answers
+div class="answers mt-2" = render @answers
 div class="answer-errors"
 = render partial: 'answers/form', locals: { question: @question, answer: Answer.new }
