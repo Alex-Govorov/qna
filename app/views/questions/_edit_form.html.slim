@@ -1,9 +1,9 @@
 div id = "question-#{question.id}-errors"
 = form_with model: [question], local:false, method: 'patch' do |f|
    = f.label :files
-   = f.file_field :files, multiple: true, direct_upload: true
+   = f.file_field :files, multiple: true, direct_upload: true, class: 'form-control'
    = f.label :title
-   = f.text_field :title
+   = f.text_field :title, class: 'form-control'
    = f.label :body
-   = f.text_area :body
-   = f.submit t('.save')
+   = f.text_area :body, class: 'form-control'
+   = f.submit t('.save'), class: 'btn btn-primary mt-1'

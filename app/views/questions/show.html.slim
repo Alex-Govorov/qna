@@ -1,7 +1,10 @@
-h1= @question.title
-p= @question.body
-div class="question-attachments"
-  = render 'shared/files', resource: @question
-div class="answers mt-2" = render @answers
-div class="answer-errors"
-= render partial: 'answers/form', locals: { question: @question, answer: Answer.new }
+div class="col-5"
+  h1= @question.title
+  p= @question.body
+  div class="question-attachments"
+    = render 'shared/files', resource: @question
+  div class="question-links"
+    = render 'shared/links', resource: @question
+  div class="answers mt-2" = render @answers
+  div class="answer-errors"
+  = render partial: 'answers/form', locals: { question: @question, answer: @answer }

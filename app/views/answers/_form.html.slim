@@ -1,7 +1,11 @@
 = render 'shared/errors', resource: @answer
 = form_with model: [question, answer], local:false do |f|
   = f.label :files
-  = f.file_field :files, multiple: true, direct_upload: true
+  = f.file_field :files, multiple: true, direct_upload: true, class: 'form-control'
+  div id="link"
+    = f.fields_for :links do |link_f|
+      = render 'shared/link_fields', form: link_f
+  p = link_to_add_nested(f, :links, '#link', partial: 'shared/link_fields')
   = f.label :body
-  = f.text_area :body
-  = f.submit t('.post_your_answer')
+  = f.text_area :body, class: 'form-control'
+  = f.submit t('.post_your_answer'), class: 'btn btn-primary mt-1'

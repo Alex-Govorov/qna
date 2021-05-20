@@ -7363,6 +7363,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
+vanilla-nested@arielj/vanilla-nested:
+  version "1.2.5"
+  resolved "https://codeload.github.com/arielj/vanilla-nested/tar.gz/95983960e20aca3d55ad34a982b7ad48fd0aa67e"
+
 vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"

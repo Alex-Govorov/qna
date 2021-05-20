@@ -1,0 +1,6 @@
+ul
+  - resource.links.each do |link|
+    -if link.gist?
+      li class="gist" = link_to link.name, link.url
+    -else
+      li = link_to link.name, link.url

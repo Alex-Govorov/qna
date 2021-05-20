@@ -2,6 +2,8 @@
   div class=('best-answer' if answer.best) id="answer-#{answer.id}"
     div id="answer-#{answer.id}-body" = answer.body
     div class="answer-attachments" = render 'shared/files', resource: answer
+    div class="answer-links"
+      = render 'shared/links', resource: answer
     div
       small class="fw-lighter" = answer&.user&.email
       ul class="nav"

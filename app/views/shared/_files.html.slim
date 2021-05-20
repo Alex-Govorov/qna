@@ -1,6 +1,6 @@
 - if resource.files.attached?
   - resource.files.each do |file|
-    div id="attachment-#{file.id}" class="row file-links col-2"
+    div id="attachment-#{file.id}" class="row file-links col-4"
       div class="col-3" = link_to file.filename.to_s, url_for(file)
       div class="delete-attachment col-1"
         - if current_user&.author_of?(resource)
