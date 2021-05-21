@@ -9,4 +9,9 @@ document.querySelector('.answer-errors').innerHTML = ("<%= render 'shared/errors
 	document.getElementById('answer_files').value = ''
 	document.getElementById('answer_links_attributes_0_name').value = ''
 	document.getElementById('answer_links_attributes_0_url').value = ''
+
+	var link = document.querySelector('#link')
+	while (link.childNodes.length > 1) {
+      link.removeChild(link.lastChild)
+	}
 <% end %>

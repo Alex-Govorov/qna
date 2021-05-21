@@ -47,20 +47,20 @@ feature 'User can add links to question', "
     fill_in 'Title', with: 'Test question'
     fill_in 'Body', with: 'text text text'
 
-    fill_in 'Link name', with: 'My gist'
+    fill_in 'Link name', with: 'My link'
     fill_in 'Url', with: link
 
     click_on 'Add Link'
 
     within all('.wrapper-div').last do
-      fill_in 'Link name', with: 'Second gist'
+      fill_in 'Link name', with: 'Second link'
       fill_in 'Url', with: link2
     end
 
     click_on 'Ask'
 
-    expect(page).to have_link 'My gist', href: link
-    expect(page).to have_link 'Second gist', href: link2
+    expect(page).to have_link 'My link', href: link
+    expect(page).to have_link 'Second link', href: link2
   end
 
   scenario 'User adds Gist link when asks question', js: true do

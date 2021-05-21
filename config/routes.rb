@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'questions#index'
 
   resources :attachments, only: :destroy
+  resources :links, only: :destroy
 
   resources :questions do
     member do
