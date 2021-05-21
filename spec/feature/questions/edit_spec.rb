@@ -8,6 +8,8 @@ I'd like to be able to edit my question
   given!(:user) { create(:user) }
   given(:user2) { create(:user) }
   given!(:question) { create(:question, user: user) }
+  given(:link) { { name: 'My link', url: 'http://127.0.0.1:3000/questions/' } }
+  given(:link2) { { name: 'Second link', url: 'http://127.0.0.1:3000/questions/' } }
 
   scenario 'Unauthenticated user can not edit question' do
     visit questions_path
@@ -56,6 +58,33 @@ I'd like to be able to edit my question
       expect(page).to have_link 'rails_helper.rb'
       expect(page).to have_link 'spec_helper.rb'
       expect(page).to have_link '.rubocop.yml'
+    end
+
+    scenario 'edits his question and adds new links', js: true do
+      click_on 'Edit'
+
+      within '.questions' do
+        fill_in 'Body', with: 'edited question body'
+        fill_in 'Title', with: 'edited question title'
+
+        click_on 'Add Link'
+
+        fill_in 'Link name', with: link[:name]
+        fill_in 'Url', with: link[:url]
+
+        click_on 'Add Link'
+
+        within all('.wrapper-div').last do
+          fill_in 'Link name', with: link2[:name]
+          fill_in 'Url', with: link2[:url]
+        end
+
+        click_on 'Save'
+      end
+
+      click_on 'View'
+      expect(page).to have_link link[:name], href: link[:url]
+      expect(page).to have_link link2[:name], href: link2[:url]
     end
 
     scenario 'edit his question with errors', js: true do

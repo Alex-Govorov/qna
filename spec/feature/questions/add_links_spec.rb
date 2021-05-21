@@ -17,12 +17,12 @@ feature 'User can add links to question', "
     fill_in 'Title', with: 'Test question'
     fill_in 'Body', with: 'text text text'
 
-    fill_in 'Link name', with: 'My gist'
+    fill_in 'Link name', with: 'My link'
     fill_in 'Url', with: link
 
     click_on 'Ask'
 
-    expect(page).to have_link 'My gist', href: link
+    expect(page).to have_link 'My link', href: link
   end
 
   scenario 'User adds Link with invalid url when asks question' do
@@ -32,7 +32,7 @@ feature 'User can add links to question', "
     fill_in 'Title', with: 'Test question'
     fill_in 'Body', with: 'text text text'
 
-    fill_in 'Link name', with: 'My gist'
+    fill_in 'Link name', with: 'My link'
     fill_in 'Url', with: bad_url
 
     click_on 'Ask'
