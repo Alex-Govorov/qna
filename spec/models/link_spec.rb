@@ -6,8 +6,7 @@ RSpec.describe Link, type: :model do
   it { should validate_presence_of :name }
   it { should validate_presence_of :url }
 
-  it { should allow_value('https://gist.github.com/Alex-Govorov/d2ec80cade529155ce6e76').for(:url) }
-  it { should_not allow_value('htpp:/dfdf.com').for(:url) }
+  it { should validate_url_of :url }
 
   describe '#gist?' do
     let(:gist_url) { 'https://gist.github.com/Alex-Govorov/d2ec80cade529155ce6e76' }

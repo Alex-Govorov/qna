@@ -38,7 +38,7 @@ feature 'User can add links to answer', "
 
     click_on 'Post your answer'
 
-    expect(page).to have_content 'Links url is invalid'
+    expect(page).to have_content 'Links url is not a valid URL'
   end
 
   scenario 'User adds Links when give an answer', js: true do

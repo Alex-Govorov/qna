@@ -35,6 +35,7 @@ gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 
 gem 'slim-rails'
+gem 'validate_url'
 gem 'vanilla_nested'
 
 group :development, :test do

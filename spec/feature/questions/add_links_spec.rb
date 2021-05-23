@@ -37,7 +37,7 @@ feature 'User can add links to question', "
 
     click_on 'Ask'
 
-    expect(page).to have_content 'Links url is invalid'
+    expect(page).to have_content 'Links url is not a valid URL'
   end
 
   scenario 'User adds Links when asks question', js: true do
