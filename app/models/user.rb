@@ -9,4 +9,9 @@ class User < ApplicationRecord
   def author_of?(resource)
     resource.user_id == id
   end
+
+  def rewards
+    Reward.all.where(question: [answers.where(best: true).where(question:
+     [Question.distinct.joins(:reward)]).pluck(:question_id)])
+  end
 end

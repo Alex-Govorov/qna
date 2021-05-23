@@ -1,0 +1,9 @@
+- if current_user.rewards.present?
+  - current_user.rewards.each do |reward|
+    div clas="row"
+      div class="col h3" = reward.question.title
+      div class="col text-muted" = reward.title
+      div class="col" = image_tag reward.image, class: 'img-fluid'
+- else
+  h1 = 'You have not yet any rewards'
+

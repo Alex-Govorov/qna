@@ -46,6 +46,8 @@ en:
     form:
       post_your_answer: "Post your answer"
       
+  back: "Back"
+
   questions:    
     index:
       title: "Question"
@@ -57,6 +59,8 @@ en:
       save: "Save"
     question:
       view: "View"
+
+  rewards: "Rewards"
 
   shared:
     files:

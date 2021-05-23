@@ -1,0 +1,6 @@
+- if current_user.rewards.present?
+  - if current_page?(rewards_user_path)
+    li = link_to t(:back), root_path, class: 'nav-link'
+  - else
+    li = link_to t(:rewards), rewards_user_path, class: 'nav-link'
+

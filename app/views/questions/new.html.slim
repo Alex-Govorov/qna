@@ -2,6 +2,9 @@
 
 div class="col-5"
   = form_with model: @question, local:true do |f|
+    div id="reward"
+      = f.fields_for :reward do |reward_f|
+        = render 'reward_fields', form: reward_f
     = f.label :files
     = f.file_field :files, multiple: true, direct_upload: true, class: 'form-control'
     div id="link"

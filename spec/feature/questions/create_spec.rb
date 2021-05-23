@@ -35,6 +35,18 @@ feature 'User can create question', "
       expect(page).to have_link 'rails_helper.rb'
     end
 
+    scenario 'asks a question with reward for best answer' do
+      fill_in 'Title', with: 'Test question'
+      fill_in 'Body', with: 'text text text'
+
+      fill_in 'Reward title', with: 'Reward for something'
+      attach_file 'Image', Rails.root.join('spec/support/03.png')
+      click_on 'Ask'
+
+      expect(page).to have_content('Reward for something')
+      expect(page).to have_css("img[src*='03.png']")
+    end
+
     scenario 'asks a question with attached files' do
       fill_in 'Title', with: 'Test question'
       fill_in 'Body', with: 'text text text'

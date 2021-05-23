@@ -1,2 +1,3 @@
 var answers = document.querySelector('.answers')
 answers.innerHTML = '<%= render @answer.question.answers.sort_by_best %>'
+document.querySelector('.rewards-link').innerHTML = "<%= j render 'shared/rewards_link' %>"

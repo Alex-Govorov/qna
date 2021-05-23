@@ -1,5 +1,7 @@
 ul class="nav justify-content-end"
   - if user_signed_in?
+    div class="rewards-link"
+      = render 'shared/rewards_link'
     li = link_to t(:logout), destroy_user_session_path, method: :delete, class: 'nav-link'
   - else
     li = link_to t(:signup), new_user_registration_path, class: 'nav-link'

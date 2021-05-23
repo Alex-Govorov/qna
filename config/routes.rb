@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :attachments, only: :destroy
   resources :links, only: :destroy
 
+  resource :user do
+    get :rewards, on: :collection
+  end
+
   resources :questions do
     member do
       get :edit

@@ -1,6 +1,12 @@
 div class="col-5"
   h1= @question.title
   p= @question.body
+  - if @question.reward
+      div class="question-reward row"
+        div class="col-3"
+          = @question.reward.title
+        div class="col-1"
+          = image_tag @question.reward.image, class: 'img-fluid'
   div class="question-attachments"
     = render 'shared/files', resource: @question
   div class="question-links"

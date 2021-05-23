@@ -1,0 +1,7 @@
+div class="reward-wrapper row"
+  div class="col-4"
+    = form.label :title, 'Reward title'
+    = form.text_field :title, class: 'form-control'
+  div class="col"
+    = form.label :image
+    = form.file_field :image, direct_upload: true, class: 'form-control'
