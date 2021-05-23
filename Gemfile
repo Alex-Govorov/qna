@@ -34,6 +34,7 @@ gem 'devise'
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 
+gem 'active_storage_validations'
 gem 'slim-rails'
 gem 'validate_url'
 gem 'vanilla_nested'

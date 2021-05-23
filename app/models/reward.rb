@@ -4,4 +4,6 @@ class Reward < ApplicationRecord
 
   validates :title, presence: true
   validates :image, presence: true
+  validates :image, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+                    size: { less_than: 100.kilobytes, message: 'must be less than 100 kilobytes' }
 end
