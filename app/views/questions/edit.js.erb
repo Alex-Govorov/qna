@@ -2,4 +2,3 @@ var edit_form = document.createElement('div')
 edit_form.setAttribute('id', 'question-<%= @question.id %>-form')
 edit_form.innerHTML = '<%= j render partial: 'edit_form', locals: { question: @question } %>'
 document.querySelector('#question-<%= @question.id %>').appendChild(edit_form)
-document.querySelector('.vanilla-nested-add').addEventListener('click', addVanillaNestedFields, true)

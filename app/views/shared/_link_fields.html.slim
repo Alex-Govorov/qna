@@ -5,4 +5,5 @@ div class="wrapper-div row"
   div class="col"
     = form.label :url
     = form.text_field :url, class: 'form-control'
+  = link_to_remove_nested(form, fields_wrapper_selector: '.wrapper-div')
 
