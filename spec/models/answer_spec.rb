@@ -23,6 +23,13 @@ RSpec.describe Answer, type: :model do
   describe '#mark_as_best' do
     let!(:answer) { create(:answer) }
     let!(:answer2) { create(:answer, question: answer.question) }
+    let(:reward) { answer.question.build_reward(title: 'Test reward') }
+
+    before do
+      reward.image.attach(io: File.open(Rails.root.join('spec/support/03.png')),
+                          filename: '03.png')
+      reward.save
+    end
 
     it "set all other question answers best attribute to false" do
       answer2.update(best: true)
@@ -46,5 +53,11 @@ RSpec.describe Answer, type: :model do
        answer.update_attribute(:body, nil) # rubocop:disable Rails/SkipsModelValidations
        expect { answer.mark_as_best }.to raise_error(ActiveRecord::RecordInvalid)
      end
+
+    it "update question reward user to answer user" do
+      answer.mark_as_best
+
+      expect(answer.question.reward.user).to eq answer.user
+    end
   end
 end

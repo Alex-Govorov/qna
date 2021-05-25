@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many :rewards, dependent: :nullify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,10 +9,5 @@ class User < ApplicationRecord
 
   def author_of?(resource)
     resource.user_id == id
-  end
-
-  def rewards
-    Reward.all.where(question: [answers.where(best: true).where(question:
-     [Question.distinct.joins(:reward)]).pluck(:question_id)])
   end
 end
