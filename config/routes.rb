@@ -10,6 +10,16 @@ Rails.application.routes.draw do
     get :rewards, on: :collection
   end
 
+  # Скорее всего роуты для голосования можно написать более красиво, но не придумал как.
+  # Чтобы сохранить урлы вида method/:resource_type/:resource_id как при такой нотации.
+  # Моя реализация похожа на API для голосования, видимо и роуты нужно делать соответсвующие
+  # Но в API я пока не умею, оставлю пока так.
+
+  post 'vote_up/:resource_type/:resource_id', to: 'votes#vote_up', as: :vote_up
+  post 'vote_down/:resource_type/:resource_id', to: 'votes#vote_down', as: :vote_down
+  delete 'vote_reset/:resource_type/:resource_id', to: 'votes#vote_reset', as: :vote_reset
+  get 'vote_status/:resource_type/:resource_id', to: 'votes#vote_status', as: :vote_status
+
   resources :questions do
     member do
       get :edit

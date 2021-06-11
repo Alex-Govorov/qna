@@ -18,6 +18,8 @@ feature "The author can delete attachment in his own answer", "
       attach_file 'File', [Rails.root.join('spec/rails_helper.rb'),
                            Rails.root.join('spec/spec_helper.rb')]
       click_on 'Save'
+
+      assert all('.answer-attachments')
     end
   end
 

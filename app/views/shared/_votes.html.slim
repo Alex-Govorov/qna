@@ -1,0 +1,11 @@
+div class="col-1 text-muted text-center #{resource.class.to_s.downcase}-#{resource.id}-vote"
+  div class="vote-control vote-icon invisible"
+    = link_to vote_up_path(resource.class.to_s, resource.id), method: :post, remote: true, data: { type: 'json' }, class: 'text-reset'
+      i class="bi bi-caret-up-fill"
+  div class="h5" = (resource.votes.score if current_user.nil?)
+  div class="vote-control vote-icon invisible"
+    = link_to vote_down_path(resource.class.to_s, resource.id), method: :post, remote: true, data: { type: 'json' }, class: 'text-reset'
+      i class="bi bi-caret-down-fill"
+  div class="vote-reset vote-icon invisible"
+    = link_to vote_reset_path(resource.class.to_s, resource.id), method: :delete, remote: true, data: { type: 'json' }, class: 'text-reset'
+      i class="bi bi-bootstrap-reboot"

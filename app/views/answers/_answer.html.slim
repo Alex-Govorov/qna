@@ -1,17 +1,19 @@
 - if answer.persisted?
-  div class=('best-answer' if answer.best) id="answer-#{answer.id}"
-    div id="answer-#{answer.id}-body" = answer.body
-    div class="answer-attachments" = render 'shared/files', resource: answer
-    div class="answer-links"
-      = render 'shared/links', resource: answer
-    div
-      small class="fw-lighter" = answer&.user&.email
-      ul class="nav"
-        - if current_user&.author_of?(answer)
-          li class="nav-item"
-            = link_to t('.edit'), edit_answer_path(answer), remote: true, class: 'nav-link'
-          li class="nav-item"
-            = link_to t('.delete'), answer_path(answer), method: :delete, remote: true, class: 'nav-link'
-        - if current_user&.author_of?(answer.question) && !answer.best
-          li class="nav-item"
-            = link_to t('.best'), mark_as_best_answer_path(answer), method: :patch, remote: true, class: 'nav-link'
+  div class="row" id="answer-#{answer.id}"
+    = render 'shared/votes', resource: answer
+    div class="col"
+      div class=('best-answer' if answer.best)
+        div id="answer-#{answer.id}-body" = answer.body
+        div class="answer-attachments" = render 'shared/files', resource: answer
+        div class="answer-links" = render 'shared/links', resource: answer
+        div
+          small class="fw-lighter" = answer&.user&.email
+          ul class="nav"
+            - if current_user&.author_of?(answer)
+              li class="nav-item"
+                = link_to t('.edit'), edit_answer_path(answer), remote: true, class: 'nav-link'
+              li class="nav-item"
+                = link_to t('.delete'), answer_path(answer), method: :delete, remote: true, class: 'nav-link'
+            - if current_user&.author_of?(answer.question) && !answer.best
+              li class="nav-item"
+                = link_to t('.best'), mark_as_best_answer_path(answer), method: :patch, remote: true, class: 'nav-link'

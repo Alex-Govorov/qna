@@ -13,6 +13,7 @@ import "channels"
 require('utils/ajax_errors')
 require('utils/gist_loader')
 require('utils/vannila_nested_ajax')
+require('utils/vote')
 
 Rails.start()
 Turbolinks.start()
