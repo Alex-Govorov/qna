@@ -22,9 +22,9 @@ shared_examples "votable" do |votable|
   end
 
   describe 'Authenticated', js: true do
-    let(:vote_up_link) { "/vote_up/#{resource.class}/#{resource.id}" }
-    let(:vote_down_link) { "/vote_down/#{resource.class}/#{resource.id}" }
-    let(:vote_reset_link) { "/vote_reset/#{resource.class}/#{resource.id}" }
+    let(:vote_up_link) { "/#{resource.class.to_s.downcase.pluralize}/#{resource.id}/vote/1" }
+    let(:vote_down_link) { "/#{resource.class.to_s.downcase.pluralize}/#{resource.id}/vote/-1" }
+    let(:vote_reset_link) { "/#{resource.class.to_s.downcase.pluralize}/#{resource.id}/vote" }
     let(:resource_id) { ".#{resource.class.to_s.downcase}-#{resource.id}-vote" }
 
     background { sign_in user }

@@ -1,48 +1,39 @@
 class VotesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_params
+  before_action :set_resource
 
-  def vote_up
-    vote(1)
-  end
-
-  def vote_down
-    vote(-1)
-  end
-
-  def vote_reset
-    vote = Vote.find_by(@params)
-    vote.destroy
-    vote_status
-  end
-
-  # У меня вся логика голосования описана в модели через валидации.
-  # Чтобы не писать методы дублирующие валидацию,
-  # я создаю новый объект и формирую данные по результатам валидации.
-  # Корректно ли использовать такую технику?
-
-  def vote_status
-    vote = Vote.new(@params)
-    @params[:can_vote] = vote.valid?
-    @params[:can_reset] = vote.errors[:user].include?('already voted for this resourse')
-    @params[:score] = vote.votable.votes.score
-    render json: @params.except(:user)
-  end
-
-  private
-
-  def vote(value)
-    vote = Vote.new(@params)
-    vote.value = value
+  def create
+    vote = @resource.votes.new(value: params[:value], user: current_user)
     if vote.save(context: :vote)
-      vote_status
+      show
     else
       render json: vote.errors.full_messages, status: :unprocessable_entity
     end
   end
 
-  def set_params
-    @params = { votable_type: params[:resource_type], votable_id: params[:resource_id],
-                user: current_user }
+  def destroy
+    vote = @resource.votes.find_by(user: current_user)
+    vote.destroy
+    show
+  end
+
+  def show
+    vote = @resource.votes.new(value: 1, user: current_user)
+    vote_response = {}
+    vote_response[:resource_type] = @resource.class.to_s.downcase
+    vote_response[:resource_id] = @resource.id
+    vote_response[:can_vote] = vote.valid?
+    vote_response[:can_reset] = vote.errors[:user].include?('already voted for this resourse')
+    vote_response[:score] = @resource.votes.score
+    render json: vote_response
+  end
+
+  private
+
+  def set_resource
+    param = params.select { |key| key.to_s.include?('_id') }
+    resource = param.keys.first.to_s.split('_').first.singularize.classify.constantize
+    resource_id = param.values.first
+    @resource = resource.find(resource_id)
   end
 end

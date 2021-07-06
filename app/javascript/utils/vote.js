@@ -39,9 +39,8 @@ function renderErrors(event) {
 }
 
 function voteElement(vote){
-  resource_type = vote.votable_type
-  resource_type = resource_type[0].toLowerCase() + resource_type.slice(1)
-  resource_id = vote.votable_id
+  resource_type = vote.resource_type
+  resource_id = vote.resource_id
   return document.querySelector(`.${resource_type}-${resource_id}-vote`)
 }
 
@@ -55,14 +54,13 @@ function voteLoader(){
 }
 
 function voteParams(element){
-  var resource_type = element.classList.item(element.classList.length-1).split('-')[0]
-  resource_type = resource_type[0].toUpperCase() + resource_type.slice(1)
+  var resource_type = element.classList.item(element.classList.length-1).split('-')[0] + 's'
   var resource_id = element.classList.item(element.classList.length-1).split('-')[1]
-  return `${resource_type}/${resource_id}`
+  return `/${resource_type}/${resource_id}/vote`
 }
 
 function loadVote(element){
-  fetch('/vote_status/' + voteParams(element))
+  fetch(voteParams(element))
   .then((response) => {
     return response.json()
   })

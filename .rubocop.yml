@@ -26,6 +26,8 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   IgnoredMethods: ['describe', 'context', 'feature', 'shared_examples'] 
+  Exclude:
+    - 'config/routes.rb'
 
 Style/AsciiComments:
   Enabled: false
