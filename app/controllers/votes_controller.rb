@@ -19,12 +19,13 @@ class VotesController < ApplicationController
 
   def show
     vote = @resource.votes.new(value: 1, user: current_user)
-    vote_response = {}
-    vote_response[:resource_type] = @resource.class.to_s.downcase
-    vote_response[:resource_id] = @resource.id
-    vote_response[:can_vote] = vote.valid?
-    vote_response[:can_reset] = vote.errors[:user].include?('already voted for this resourse')
-    vote_response[:score] = @resource.votes.score
+    vote_response = {
+      resource_type: @resource.class.to_s.downcase,
+      resource_id: @resource.id,
+      can_vote: vote.valid?,
+      can_reset: vote.errors[:user].include?('already voted for this resourse'),
+      score: @resource.votes.score
+    }
     render json: vote_response
   end
 
